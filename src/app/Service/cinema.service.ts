@@ -27,12 +27,18 @@ export class CinemaService {
   }
 
   getSalles(selectedCinema: any) {
-    return this.http.get(selectedCinema._links.salles.href);
+    let url=selectedCinema._links.salles.href
+    let end_part=url.split("http://34.16.138.119:8080/")[1]
+    console.error("END PART",end_part)
+    return this.http.get("/spring-api/"+end_part);
   }
 
   getProjection(salle: any) {
     const url = salle._links.projections.href.replace('{?projection}', '') + '?projection=FilmProjection';
-    return this.http.get(url);
+    let end_part=url.split("http://34.16.138.119:8080/")[1]
+    console.error("END PART",end_part)
+
+    return this.http.get("/spring-api/"+end_part);
   }
 
   orderTickets(p: { tickets: number[]; codePayment: string; nomClient: string }) {
@@ -41,7 +47,9 @@ export class CinemaService {
 
 
   fetchTickets(tickets: any) {
-    return this.http.get(tickets);
+    let end_part=tickets.split("http://34.16.138.119:8080/")[1]
+    console.error("END PART",end_part)
+    return this.http.get("/spring-api/"+tickets);
   }
 
   addFilm(fileList: UploadFile[], data: any) {
