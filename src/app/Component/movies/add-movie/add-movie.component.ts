@@ -18,6 +18,7 @@ export class AddMovieComponent implements OnInit {
   isLoading: boolean;
   routerSubscription: Subscription;
   modifyMode: boolean;
+  id:number;
 
   constructor(private modal: NzModalService, private fb: FormBuilder,
               private cinemaService: CinemaService, private router: Router,
@@ -42,7 +43,9 @@ export class AddMovieComponent implements OnInit {
     if (this.route.snapshot.url.toString().includes('modify')) {
       this.modifyMode = true;
       this.routerSubscription = this.route.params.subscribe((p: Params) => {
-          this.cinemaService.getMovie(+p.id).subscribe((movie: Movie) => {
+        console.error("route",this.route.snapshot.url.toString())
+         this.id=parseInt(this.route.snapshot.url.toString().split("https://main--melodic-gumdrop-c52c3f.netlify.app/movies/modify/")[1])
+          this.cinemaService.getMovie(this.id).subscribe((movie: Movie) => {
             this.isLoading = false;
             this.movie = movie;
             this.validateForm.get('titre').setValue(movie.titre);
