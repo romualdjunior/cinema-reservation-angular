@@ -21,7 +21,9 @@ export class CinemaService {
   }
 
   getCinemas(url: string) {
-    return this.http.get(url);
+    let end_part=url.split("http://34.16.138.119:8080/")[1]
+    console.error("END PART",end_part)
+    return this.http.get("/spring-api/"+end_part);
   }
 
   getSalles(selectedCinema: any) {
