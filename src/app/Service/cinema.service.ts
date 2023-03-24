@@ -17,7 +17,7 @@ export class CinemaService {
   }
 
   getCities() {
-    return this.http.get(this.baseUrl + 'villes');
+    return this.http.get( '/spring-api/villes');
   }
 
   getCinemas(url: string) {
@@ -34,7 +34,7 @@ export class CinemaService {
   }
 
   orderTickets(p: { tickets: number[]; codePayment: string; nomClient: string }) {
-    return this.http.post(this.baseUrl + 'buyTickets', p);
+    return this.http.post('/spring-api/buyTickets', p);
   }
 
 
@@ -50,7 +50,7 @@ export class CinemaService {
     formData.append('filmData', new Blob([JSON.stringify(data)], {
       type: 'application/json'
     }));
-    return this.http.post<Movie>('http://localhost:8080/addFilm', formData);
+    return this.http.post<Movie>('/spring-api/addFilm', formData);
   }
 
   onlyNumbers = (control: FormControl): { [s: string]: boolean } => {
@@ -63,25 +63,25 @@ export class CinemaService {
   }
 
   getFilms(pageSize: number, pageIndex: number) {
-    const requestUrl = this.baseUrl + `films?page=${pageIndex - 1}&size=${pageSize}`;
+    const requestUrl = `/spring-api/films?page=${pageIndex - 1}&size=${pageSize}`;
     return this.http.get(requestUrl);
 
   }
 
   getMovie(id: number) {
-    return this.http.get(this.baseUrl + 'films/' + id);
+    return this.http.get('/spring-api/films/' + id);
   }
 
   getMovies() {
-    return this.http.get<FilmsResponse>(this.baseUrl + 'films/');
+    return this.http.get<FilmsResponse>('/spring-api/films/');
   }
 
   getCity(id: number) {
-    return this.http.get<City>(this.baseUrl + 'villes/' + id);
+    return this.http.get<City>('/spring-api/villes/' + id);
   }
 
   deleteMovie(id: number) {
-    return this.http.delete(this.baseUrl + 'films/' + id);
+    return this.http.delete('/spring-api/films/' + id);
   }
 
   modifyFilm(fileList: UploadFile[], movie: Movie, rawValue: Movie) {
@@ -96,40 +96,40 @@ export class CinemaService {
     formData.append('filmData', new Blob([JSON.stringify(rawValue)], {
       type: 'application/json'
     }));
-    return this.http.post<Movie>(this.baseUrl + 'modifyMovie', formData);
+    return this.http.post<Movie>('/spring-api/modifyMovie', formData);
   }
 
   addCity(formData: any) {
-    return this.http.post<City>(this.baseUrl + 'villes', formData);
+    return this.http.post<City>('/spring-api/villes', formData);
   }
 
   deleteCity(id: any) {
-    return this.http.delete(this.baseUrl + 'villes/' + id);
+    return this.http.delete( '/spring-api/villes/' + id);
   }
 
   modifyCity(id: number, rawValue: any) {
-    return this.http.patch<City>(this.baseUrl + 'villes/' + id, rawValue);
+    return this.http.patch<City>( '/spring-api/villes/' + id, rawValue);
   }
 
   addCinema(rawValue: any) {
-    return this.http.post<boolean>(this.baseUrl + 'addCinema', rawValue);
+    return this.http.post<boolean>( '/spring-api/addCinema', rawValue);
   }
 
   deleteCinema(id: any) {
-    return this.http.delete(this.baseUrl + 'cinemas/' + id);
+    return this.http.delete( '/spring-api/cinemas/' + id);
   }
 
   getCinema(id: number) {
-    return this.http.get<Cinema>(this.baseUrl + 'cinemas/' + id);
+    return this.http.get<Cinema>( '/spring-api/cinemas/' + id);
   }
 
   addProjections(data: { movieId: number; projections: { date: any; price: any }[] }) {
-    return this.http.post<boolean>(this.baseUrl + 'updateProjections', data);
+    return this.http.post<boolean>( '/spring-api/updateProjections', data);
   }
 
   deleteRoom(room: any) {
     if (room?.id) {
-      return this.http.delete(this.baseUrl + 'salles/' + room.id);
+      return this.http.delete( '/spring-api/salles/' + room.id);
     }
   }
 }
