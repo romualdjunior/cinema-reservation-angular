@@ -44,24 +44,29 @@ export class MoviesComponent implements OnInit {
     this.router.navigateByUrl('movies/add');
   }
 
-  goToDetails(id: number) {
-    if (id !== null) {
+  goToDetails(url: string) {
+    if (url !== null) {
+      let id=parseInt(url.split("films/")[1])
       this.router.navigateByUrl('movies/details/' + id);
     }
   }
 
-  deleteMovie(id: number) {
-    this.modal.confirm({
-      nzTitle: 'Are you sure delete this movie?',
-      nzOkText: 'Yes',
-      nzOkType: 'danger',
-      nzOnOk: () => this.cinemaService.deleteMovie(id).subscribe(response => {
-        this.getMovies();
-      }, error => {
-        console.log(error);
-      }),
-      nzCancelText: 'No',
-    });
+  deleteMovie(url: string) {
+    if (url !== null) {
+      let id=parseInt(url.split("films/")[1])
+      this.modal.confirm({
+        nzTitle: 'Are you sure delete this movie?',
+        nzOkText: 'Yes',
+        nzOkType: 'danger',
+        nzOnOk: () => this.cinemaService.deleteMovie(id).subscribe(response => {
+          this.getMovies();
+        }, error => {
+          console.log(error);
+        }),
+        nzCancelText: 'No',
+      });
+    }
+   
   }
 
   editMovie(url: string) {

@@ -21,21 +21,21 @@ export class CinemaService {
   }
 
   getCinemas(url: string) {
-    let end_part=url.split("http://34.16.138.119:8080/")[1]
+    let end_part=url.split("http://34.16.129.197:8080/")[1]
     console.error("END PART",end_part)
     return this.http.get("/spring-api/"+end_part);
   }
 
   getSalles(selectedCinema: any) {
     let url=selectedCinema._links.salles.href
-    let end_part=url.split("http://34.16.138.119:8080/")[1]
+    let end_part=url.split("http://34.16.129.197:8080/")[1]
     console.error("END PART",end_part)
     return this.http.get("/spring-api/"+end_part);
   }
 
   getProjection(salle: any) {
     const url = salle._links.projections.href.replace('{?projection}', '') + '?projection=FilmProjection';
-    let end_part=url.split("http://34.16.138.119:8080/")[1]
+    let end_part=url.split("http://34.16.129.197:8080/")[1]
     console.error("END PART",end_part)
 
     return this.http.get("/spring-api/"+end_part);
@@ -47,7 +47,7 @@ export class CinemaService {
 
 
   fetchTickets(tickets: any) {
-    let end_part=tickets.split("http://34.16.138.119:8080/")[1]
+    let end_part=tickets.split("http://34.16.129.197:8080/")[1]
     console.error("END PART",end_part)
     return this.http.get("/spring-api/"+tickets);
   }

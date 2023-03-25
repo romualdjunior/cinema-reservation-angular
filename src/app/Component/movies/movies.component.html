@@ -26,14 +26,15 @@
           <img alt="example" src="{{movie.photo | pathToUrl}}" />
         </ng-template>
         <ng-template #actionSetting>
-          <i (click)="goToDetails(movie.id)" style="color: #40A9FF">Details</i>
+          <i (click)="goToDetails(movie._links.self.href)" style="color: #40A9FF">Details</i>
         </ng-template>
         <ng-template #actionEdit>
           <i nz-icon nzType="edit" (click)="editMovie(movie._links.self.href)" [nzTheme]="'twotone'"
             [nzTwotoneColor]="'green'"></i>
         </ng-template>
         <ng-template #actionEllipsis>
-          <i nz-icon nzType="delete" (click)="deleteMovie(movie.id)" [nzTheme]="'twotone'" [nzTwotoneColor]="'red'"></i>
+          <i nz-icon nzType="delete" (click)="deleteMovie(movie._links.self.href)" [nzTheme]="'twotone'"
+            [nzTwotoneColor]="'red'"></i>
         </ng-template>
       </nz-col>
     </nz-row>
