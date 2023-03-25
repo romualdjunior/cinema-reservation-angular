@@ -48,7 +48,7 @@ export class AddMovieComponent implements OnInit {
       console.log("ID param 2",this.route.snapshot.params.id)
       this.routerSubscription = this.route.params.subscribe((p: Params) => {
         console.error("route",this.route.snapshot.url)
-         this.id=parseInt(this.route.snapshot.url.toString().split("https://main--melodic-gumdrop-c52c3f.netlify.app/movies/modify/")[1])
+        this.id=this.route.snapshot.params.id
           this.cinemaService.getMovie(this.id).subscribe((movie: Movie) => {
             this.isLoading = false;
             this.movie = movie;
