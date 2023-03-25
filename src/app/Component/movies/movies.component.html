@@ -29,8 +29,8 @@
           <i (click)="goToDetails(movie.id)" style="color: #40A9FF">Details</i>
         </ng-template>
         <ng-template #actionEdit>
-          <i nz-icon nzType="edit" (click)="editMovie(movie.id)" [nzTheme]="'twotone'" [nzTwotoneColor]="'green'">Lien:
-            {{movie._links.self.href}}</i>
+          <i nz-icon nzType="edit" (click)="editMovie(movie._links.self.href)" [nzTheme]="'twotone'"
+            [nzTwotoneColor]="'green'"></i>
         </ng-template>
         <ng-template #actionEllipsis>
           <i nz-icon nzType="delete" (click)="deleteMovie(movie.id)" [nzTheme]="'twotone'" [nzTwotoneColor]="'red'"></i>

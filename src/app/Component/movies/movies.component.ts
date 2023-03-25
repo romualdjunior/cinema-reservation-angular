@@ -64,8 +64,9 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  editMovie(id: number) {
-    if (id !== null) {
+  editMovie(url: string) {
+    if (url !== null) {
+      let id=parseInt(url.split("films/")[1])
       this.router.navigateByUrl('movies/modify/' + id);
     }
   }
