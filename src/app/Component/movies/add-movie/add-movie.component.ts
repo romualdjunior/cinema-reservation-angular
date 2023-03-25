@@ -24,7 +24,7 @@ export class AddMovieComponent implements OnInit {
               private cinemaService: CinemaService, private router: Router,
               private route: ActivatedRoute) {
                 console.log("ID param in constructor",this.route.snapshot.params.id)
-
+                this.id=this.route.snapshot.params.id
                 
   }
 
@@ -48,7 +48,6 @@ export class AddMovieComponent implements OnInit {
       console.log("ID param 2",this.route.snapshot.params.id)
       this.routerSubscription = this.route.params.subscribe((p: Params) => {
         console.error("route",this.route.snapshot.url)
-        this.id=this.route.snapshot.params.id
           this.cinemaService.getMovie(this.id).subscribe((movie: Movie) => {
             this.isLoading = false;
             this.movie = movie;
@@ -95,6 +94,7 @@ export class AddMovieComponent implements OnInit {
     this.isLoading = true;
     let results: Observable<Movie>;
     if (this.modifyMode) {
+      this.movie.id=this.id
       results = this.cinemaService.modifyFilm(this.fileList, this.movie, this.validateForm.getRawValue());
     } else {
       results = this.cinemaService.addFilm(this.fileList, this.validateForm.getRawValue());
