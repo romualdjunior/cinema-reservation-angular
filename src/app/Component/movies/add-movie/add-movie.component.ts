@@ -23,7 +23,6 @@ export class AddMovieComponent implements OnInit {
   constructor(private modal: NzModalService, private fb: FormBuilder,
               private cinemaService: CinemaService, private router: Router,
               private route: ActivatedRoute) {
-                console.log("ID param in constructor",this.route.snapshot.params.id)
                 this.id=this.route.snapshot.params.id
                 
   }
@@ -45,7 +44,6 @@ export class AddMovieComponent implements OnInit {
     });
     if (this.route.snapshot.url.toString().includes('modify')) {
       this.modifyMode = true;
-      console.log("ID param 2",this.route.snapshot.params.id)
       this.routerSubscription = this.route.params.subscribe((p: Params) => {
         console.error("route",this.route.snapshot.url)
           this.cinemaService.getMovie(this.id).subscribe((movie: Movie) => {

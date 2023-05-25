@@ -60,9 +60,16 @@
     </nz-form-item>
     <nz-form-item nz-row class="register-area">
       <nz-form-control [nzSpan]="14" [nzOffset]="6">
-        <button nz-button nzType="primary" [disabled]="!validateForm.valid || (!modifyMode && fileList.length===0)">Add
+        <button *ngIf="modifyMode; else addMovie" nz-button nzType="primary"
+          [disabled]="!validateForm.valid || (!modifyMode && fileList.length===0)">Update
           movie
         </button>
+        <ng-template #addMovie>
+          <button nz-button nzType="primary"
+            [disabled]="!validateForm.valid || (!modifyMode && fileList.length===0)">Add
+            movie
+          </button>
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
   </form>

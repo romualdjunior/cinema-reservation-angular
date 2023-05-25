@@ -30,6 +30,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         this.cinemaService.getMovie(+p.id).subscribe((movie: Movie) => {
           this.isLoading = false;
           this.movie = movie;
+          this.movie.id=p.id
+          console.log("MovieId",movie.id)
+
         }, _ => {
           this.isLoading = false;
           this.movie = null;

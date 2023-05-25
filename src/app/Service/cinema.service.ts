@@ -11,45 +11,46 @@ import {FilmsResponse} from '../Data/FilmsResponse';
   providedIn: 'root'
 })
 export class CinemaService {
-  baseUrl = '/spring-api/';
+  baseUrl = 'http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/';
 
   constructor(private http: HttpClient) {
   }
 
   getCities() {
-    return this.http.get( '/spring-api/villes');
+    return this.http.get( 'http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/villes');
   }
 
   getCinemas(url: string) {
-    let end_part=url.split("http://34.16.129.197:8080/")[1]
+    let end_part=url.split("http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/")[1]
     console.error("END PART",end_part)
-    return this.http.get("/spring-api/"+end_part);
+    return this.http.get("http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/"+end_part);
   }
 
   getSalles(selectedCinema: any) {
     let url=selectedCinema._links.salles.href
-    let end_part=url.split("http://34.16.129.197:8080/")[1]
+    console.log("URL",url)
+    let end_part=url.split("http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/")[1]
     console.error("END PART",end_part)
-    return this.http.get("/spring-api/"+end_part);
+    return this.http.get("http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/"+end_part);
   }
 
   getProjection(salle: any) {
     const url = salle._links.projections.href.replace('{?projection}', '') + '?projection=FilmProjection';
-    let end_part=url.split("http://34.16.129.197:8080/")[1]
+    let end_part=url.split("http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/")[1]
     console.error("END PART",end_part)
 
-    return this.http.get("/spring-api/"+end_part);
+    return this.http.get("http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/"+end_part);
   }
 
   orderTickets(p: { tickets: number[]; codePayment: string; nomClient: string }) {
-    return this.http.post('/spring-api/buyTickets', p);
+    return this.http.post('http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/buyTickets', p);
   }
 
 
   fetchTickets(tickets: any) {
-    let end_part=tickets.split("http://34.16.129.197:8080/")[1]
+    let end_part=tickets.split("http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/")[1]
     console.error("END PART",end_part)
-    return this.http.get("/spring-api/"+tickets);
+    return this.http.get("http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/"+end_part);
   }
 
   addFilm(fileList: UploadFile[], data: any) {
@@ -60,7 +61,7 @@ export class CinemaService {
     formData.append('filmData', new Blob([JSON.stringify(data)], {
       type: 'application/json'
     }));
-    return this.http.post<Movie>('/spring-api/addFilm', formData);
+    return this.http.post<Movie>('http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/addFilm', formData);
   }
 
   onlyNumbers = (control: FormControl): { [s: string]: boolean } => {
@@ -73,25 +74,25 @@ export class CinemaService {
   }
 
   getFilms(pageSize: number, pageIndex: number) {
-    const requestUrl = `/spring-api/films?page=${pageIndex - 1}&size=${pageSize}`;
+    const requestUrl = `http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/films?page=${pageIndex - 1}&size=${pageSize}`;
     return this.http.get(requestUrl);
 
   }
 
   getMovie(id: number) {
-    return this.http.get('/spring-api/films/' + id);
+    return this.http.get('http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/films/' + id);
   }
 
   getMovies() {
-    return this.http.get<FilmsResponse>('/spring-api/films/');
+    return this.http.get<FilmsResponse>('http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/films/');
   }
 
   getCity(id: number) {
-    return this.http.get<City>('/spring-api/villes/' + id);
+    return this.http.get<City>('http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/villes/' + id);
   }
 
   deleteMovie(id: number) {
-    return this.http.delete('/spring-api/films/' + id);
+    return this.http.delete('http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/films/' + id);
   }
 
   modifyFilm(fileList: UploadFile[], movie: Movie, rawValue: Movie) {
@@ -106,40 +107,42 @@ export class CinemaService {
     formData.append('filmData', new Blob([JSON.stringify(rawValue)], {
       type: 'application/json'
     }));
-    return this.http.post<Movie>('/spring-api/modifyMovie', formData);
+    return this.http.post<Movie>('http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/modifyMovie', formData);
   }
 
   addCity(formData: any) {
-    return this.http.post<City>('/spring-api/villes', formData);
+    return this.http.post<City>('http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/villes', formData);
   }
 
   deleteCity(id: any) {
-    return this.http.delete( '/spring-api/villes/' + id);
+    return this.http.delete( 'http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/villes/' + id);
   }
 
   modifyCity(id: number, rawValue: any) {
-    return this.http.patch<City>( '/spring-api/villes/' + id, rawValue);
+    return this.http.patch<City>( 'http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/villes/' + id, rawValue);
   }
 
   addCinema(rawValue: any) {
-    return this.http.post<boolean>( '/spring-api/addCinema', rawValue);
+    return this.http.post<boolean>( 'http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/addCinema', rawValue);
   }
 
   deleteCinema(id: any) {
-    return this.http.delete( '/spring-api/cinemas/' + id);
+    return this.http.delete( 'http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/cinemas/' + id);
   }
 
   getCinema(id: number) {
-    return this.http.get<Cinema>( '/spring-api/cinemas/' + id);
+    return this.http.get<Cinema>( 'http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/cinemas/' + id);
   }
 
   addProjections(data: { movieId: number; projections: { date: any; price: any }[] }) {
-    return this.http.post<boolean>( '/spring-api/updateProjections', data);
+    return this.http.post<boolean>( 'http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/updateProjections', data);
   }
 
   deleteRoom(room: any) {
+    console.log("Room Id",room);
     if (room?.id) {
-      return this.http.delete( '/spring-api/salles/' + room.id);
+      console.log("Room Id",room);
+      return this.http.delete( 'http://ecinemapi.arhghrgqb5exgmd3.eastus.azurecontainer.io:8080/salles/' + room.id);
     }
   }
 }

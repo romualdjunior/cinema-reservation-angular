@@ -5,7 +5,7 @@
 <nz-spin [nzSpinning]="isLoading">
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="init">Initialize data  </nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="init">Initialize data </nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
         <label nz-checkbox formControlName="init">Initialize ?</label>
       </nz-form-control>
@@ -13,42 +13,41 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" nzRequired>City</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input a city!">
-        <nz-select nzAllowClear nzPlaceHolder="Select a city"
-                   formControlName="city"
-                   [nzNotFoundContent]="templateCities"
-                   [nzAllowClear]="false">
-          <nz-option *ngFor="let city of citiesOptions" [nzLabel]="city.city" [nzValue]="city.id"></nz-option>
+        <nz-select nzAllowClear nzPlaceHolder="Select a city" formControlName="city"
+          [nzNotFoundContent]="templateCities" [nzAllowClear]="false">
+          <nz-option *ngFor="let city of citiesOptions" [nzLabel]="city.city" [nzValue]="city.city">
+          </nz-option>
         </nz-select>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" nzRequired>Name</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input a name!">
-        <input nz-input id="name" formControlName="name" placeholder="name"/>
+        <input nz-input id="name" formControlName="name" placeholder="name" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nbrRooms" nzRequired>Number of rooms</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input a valid number!">
-        <input nz-input id="nbrRooms" formControlName="nbrRooms" type="number"/>
+        <input nz-input id="nbrRooms" formControlName="nbrRooms" type="number" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="longitude">Longitude</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input a valid longitude!">
-        <input nz-input id="longitude" formControlName="longitude" type="number"/>
+        <input nz-input id="longitude" formControlName="longitude" type="number" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="latitude">Latitude</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input a valid latitude!">
-        <input nz-input id="latitude" formControlName="latitude" type="number"/>
+        <input nz-input id="latitude" formControlName="latitude" type="number" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="altitude">Altitude</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input a valid altitude!">
-        <input nz-input id="altitude" formControlName="altitude" type="number"/>
+        <input nz-input id="altitude" formControlName="altitude" type="number" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item nz-row class="register-area">
@@ -60,4 +59,3 @@
     </nz-form-item>
   </form>
 </nz-spin>
-

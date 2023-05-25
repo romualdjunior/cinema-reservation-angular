@@ -104,6 +104,7 @@ export class CinemasComponent implements OnInit {
   addOrRemoveTicketCart(ticket: any) {
     ticket.selected = !ticket.selected;
     if (ticket.selected) {
+      console.log("ticketid:",ticket.id)
       this.ticketCart.push(ticket.id);
     } else {
       this.ticketCart.splice(this.ticketCart.indexOf(ticket.id), 1);
@@ -125,6 +126,7 @@ export class CinemasComponent implements OnInit {
   }
 
   orderTickets() {
+    console.log("tickets",this.ticketCart ) 
     this.cinemaService.orderTickets({
       nomClient: this.fullName,
       codePayment: this.paymentNumber,
@@ -255,7 +257,9 @@ export class CinemasComponent implements OnInit {
   }
 
   deleteRoom(salle: any) {
-    this.cinemaService.deleteRoom(salle).subscribe(results => {
+    let salleId=parseInt(salle.name.slice(-1))
+    console.log("SalleId",salleId)
+    this.cinemaService.deleteRoom(salleId).subscribe(results => {
       this.message.success('Cinema deleted !');
       this.getRooms();
     }, error => this.errorFunc(error));
