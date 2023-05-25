@@ -21,6 +21,7 @@ export class CinemaService {
   }
 
   getCinemas(url: string) {
+    console.log("URL",url)
     let end_part=url.split("http://localhost:8080/")[1]
     console.error("END PART",end_part)
     return this.http.get("/spring-api/"+end_part);
